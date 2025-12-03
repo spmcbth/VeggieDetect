@@ -1,0 +1,156 @@
+/* style.css - Phiên bản trắng sáng, bo góc, shadow nhẹ, selectbox nổi bật */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Nền chính */
+.stApp {
+    background: #ffffff;
+    color: #333333;
+}
+
+/* Header */
+.main-header {
+    background: linear-gradient(135deg, #4CAF50 0%, #2196F3 100%);
+    padding: 3rem 2rem;
+    border-radius: 30px;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.main-header h1 {
+    color: white;
+    font-size: 3.2rem;
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.main-header p {
+    color: rgba(255,255,255,0.95);
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+/* Section header */
+.section-header {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid #4CAF50;
+    border-radius: 10px;
+}
+
+/* Cards & box */
+.card, .result-box, .stFileUploader, .stAlert {
+    background: #fdfdfd;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+/* Image container */
+.image-container {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-top: 1rem;
+    border: 2px solid #eee;
+}
+
+.image-container:hover {
+    border-color: #4CAF50;
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+}
+
+/* Result box */
+.result-box {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 1rem;
+    border: 2px dashed #ddd;
+    background: #fefefe;
+    color: #333;
+}
+
+.result-success {
+    background: linear-gradient(135deg, #4CAF50 0%, #2196F3 100%);
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 1rem;
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+}
+
+/* Buttons */
+.stButton > button {
+    width: 100%;
+    background: linear-gradient(135deg, #4CAF50 0%, #2196F3 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(76, 175, 80, 0.15);
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.25);
+}
+
+/* File uploader */
+.stFileUploader {
+    border: 2px dashed #ccc;
+    background: #fafafa;
+    border-radius: 15px;
+}
+
+/* Selectbox */
+.stSelectbox label {
+    color: #333 !important;        /* chữ label */
+    font-weight: 600;
+}
+
+.stSelectbox > div > div {
+    background: #ffffff !important; /* nền trắng nổi bật */
+    color: #333 !important;         /* chữ option */
+    border: 1px solid #4CAF50;      /* viền xanh */
+    border-radius: 15px;
+    padding: 0.3rem 0.5rem;
+    min-height: 3rem !important;     /* chiều cao selectbox */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Option hover */
+.stSelectbox > div > div div[role="option"]:hover {
+    background: #e0f7fa !important; /* nền xanh nhạt khi hover */
+    color: #000000 !important;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+}
+
+.footer p {
+    color: #333;
+    font-size: 1rem;
+}
