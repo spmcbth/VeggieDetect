@@ -10,7 +10,7 @@ predictor = Predictor(class_list)
 
 # ===================== Streamlit Config =====================
 st.set_page_config(
-    page_title="VeggieDetect - Nhận dạng rau củ AI",
+    page_title="VeggieDetect",
     layout="wide",
     page_icon="🥬"
 )
@@ -55,44 +55,59 @@ with col1:
             st.session_state['result'] = None
             st.session_state['predicted'] = False
         except Exception as e:
-            st.error(f"❌ Lỗi khi đọc ảnh: {str(e)}")
+            st.error(f"Lỗi khi đọc ảnh: {str(e)}")
     else:
-        st.info("👆 Vui lòng tải ảnh lên để bắt đầu nhận dạng")
+        st.info("Vui lòng tải ảnh lên để bắt đầu nhận dạng")
 
 with col2:
-    st.markdown('<div class="section-header">⚙️ Cài đặt</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">🔎 Chọn mô hình</div>', unsafe_allow_html=True)
+
     selected_model = st.selectbox(
-        "Chọn phiên bản model",
+        "Phiên bản model",
         options=model_loader.get_all_versions(),
         index=0
     )
     st.session_state['selected_model'] = selected_model
 
-    if st.button("🔍 Nhận dạng ngay"):
+    if st.button("Nhận dạng"):
         if st.session_state['image'] is None:
-            st.warning("⚠️ Vui lòng tải ảnh trước khi nhận dạng!")
+            st.warning("Vui lòng tải ảnh trước.")
         else:
-            with st.spinner("🔄 Đang phân tích ảnh..."):
+            with st.spinner("Đang xử lý..."):
                 try:
                     X = preprocess(st.session_state['image'])
-                    model = model_loader.get_model(st.session_state['selected_model'])
+                    model = model_loader.get_model(selected_model)
                     pred_class, pred_prob = predictor.predict(model, X)
+
                     st.session_state['result'] = (pred_class, pred_prob)
                     st.session_state['predicted'] = True
-                    st.success(f"✅ Nhận dạng thành công! 🎯 {pred_class} ({pred_prob*100:.2f}%)")
-                except Exception as e:
-                    st.error(f"❌ Lỗi khi nhận dạng: {str(e)}")
 
-    st.markdown('<div class="section-header">📊 Kết quả</div>', unsafe_allow_html=True)
-    if st.session_state['result'] is not None and st.session_state['predicted']:
+                except Exception as e:
+                    st.error(f"Lỗi: {str(e)}")
+
+    # ===================== Kết quả =====================
+    st.markdown('<div class="section-header">Kết quả</div>', unsafe_allow_html=True)
+
+    if st.session_state['predicted']:
         pred_class, pred_prob = st.session_state['result']
-        st.markdown(f'<div class="result-box result-success">🎯 {pred_class} ({pred_prob*100:.2f}%)</div>', unsafe_allow_html=True)
+        st.markdown(
+            f"""
+            <div class="result-box result-success">
+                <strong>{pred_class}</strong><br>
+                Accuracy: {pred_prob*100:.2f}%
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
     else:
-        st.markdown('<div class="result-box">⏳ Chưa có kết quả. Hãy tải ảnh và nhấn nút nhận dạng!</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="result-box">Chưa có kết quả</div>',
+            unsafe_allow_html=True
+        )
 
 # ===================== Footer =====================
 st.markdown("""
 <div class="footer">
-    <p>✨ Được phát triển với ❤️ bằng Streamlit và TensorFlow ✨</p>
+    <p>✨ CT282 – Deep Learning | Nhóm thực hiện: Mạch Gia Hân, Trần Trương Ngọc Uyển, Trần Tiểu Mẫn ✨</p>
 </div>
 """, unsafe_allow_html=True)

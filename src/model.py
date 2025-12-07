@@ -3,13 +3,13 @@ import tensorflow as tf
 class ModelLoader:
     def __init__(self):
         self._model_paths = {
-            "V1": "src/models/baseline.keras",
-            "V2": "src/models/train001.keras",
-            "V3": "src/models/train002.keras",
-            "V4": "src/models/train003.keras"
+            "LeNet Baseline": "src/models/baseline.keras",
+            "MobileNetV2 Base": "src/models/mobilenetv2.keras",
+            "V1": "src/models/train001.keras",
+            "V2": "src/models/train002.keras",
+            "V3": "src/models/train003.keras"
         }
         self._cache = {}
-        # Tên lớp tiếng Việt + tiếng Anh
         self._class_list = [
             'Ớt chuông (Bellpepper)',
             'Cà rốt (Carrot)',
